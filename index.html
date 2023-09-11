@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Index Page</title>
+  <style>
+    /* Добавляем стиль для ячеек */
+    .row {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .row input {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <!-- Здесь будут ячейки input -->
+</div>
+
+<script>
+  // JavaScript код для получения данных с index.php и заполнения ячеек
+  fetch('index.php')
+          .then(response => response.json())
+          .then(data => {
+            let container = document.getElementById('container');
+            data.forEach(row => {
+              let rowDiv = document.createElement('div');
+              rowDiv.classList.add('row');
+              row.forEach(item => {
+                let input = document.createElement('input');
+                input.value = item;
+                rowDiv.appendChild(input);
+              });
+              container.appendChild(rowDiv);
+            });
+          });
+
+</script>
+</body>
+</html>
